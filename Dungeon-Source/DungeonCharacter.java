@@ -36,11 +36,11 @@
 public abstract class DungeonCharacter implements Comparable
 {
 
-	protected String name;
-	protected int hitPoints;
-	protected int attackSpeed;
-	protected double chanceToHit;
-	protected int damageMin, damageMax;
+	private String name;
+	private int hitPoints;
+	private int attackSpeed;
+	private double chanceToHit;
+	private int damageMin, damageMax;
 
 	public int compareTo(Object o)
 	{

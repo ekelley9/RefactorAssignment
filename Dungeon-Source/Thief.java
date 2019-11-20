@@ -12,9 +12,9 @@
 public class Thief extends Hero
 {
 
-    public Thief()
+    public Thief(String name)
 	{
-		super("Thief", 75, 6, .8, 20, 40, .5);
+		super(name, 75, 6, .8, 20, 40, .5);
 
 
 
@@ -26,7 +26,7 @@ public class Thief extends Hero
 		if (surprise <= .4)
 		{
 			System.out.println("Surprise attack was successful!\n" +
-								name + " gets an additional turn.");
+								getName() + " gets an additional turn.");
 			numTurns++;
 			attack(opponent);
 		}//end surprise

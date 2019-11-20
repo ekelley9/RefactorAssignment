@@ -79,14 +79,14 @@ this task
 
 		switch(choice)
 		{
-			case 1: return new Warrior();
+			case 1: return characterCreator(1);
 
-			case 2: return new Sorceress();
+			case 2: return characterCreator(2);
 
-			case 3: return new Thief();
+			case 3: return characterCreator(3);
 
 			default: System.out.println("invalid choice, returning Thief");
-				     return new Thief();
+				return characterCreator(0);
 		}//end switch
 	}//end chooseHero method
 
@@ -166,5 +166,28 @@ user has the option of quitting.
 
 	}//end battle method
 
-
+	public static Hero characterCreator(int choice)
+	  {
+			if(choice == 1)
+			{
+				System.out.print("Enter character name: ");
+				return new Warrior(Keyboard.readString());
+			}
+			else if(choice == 2)
+			{
+				System.out.print("Enter character name: ");
+				return new Sorceress(Keyboard.readString());
+			}
+			else if(choice == 3)
+			{
+				System.out.print("Enter character name: ");
+				return new Thief(Keyboard.readString());
+			}
+			else
+			{
+				return new Thief("Roland");
+			}
+		
+			
+	  }
 }//end Dungeon class
