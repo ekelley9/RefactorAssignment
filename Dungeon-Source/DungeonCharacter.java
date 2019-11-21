@@ -33,7 +33,7 @@
  * @version 1.0
  */
 
-public abstract class DungeonCharacter implements Comparable
+public abstract class DungeonCharacter
 {
 
 	private String name;
@@ -41,6 +41,7 @@ public abstract class DungeonCharacter implements Comparable
 	private int attackSpeed;
 	private double chanceToHit;
 	private int damageMin, damageMax;
+	private Abilities basicAttack;
 
 	public int compareTo(Object o)
 	{
@@ -51,7 +52,7 @@ public abstract class DungeonCharacter implements Comparable
 //explicit constructor to initialize instance variables -- it is called
 // by derived classes
 	public DungeonCharacter(String name, int hitPoints, int attackSpeed,
-				     double chanceToHit, int damageMin, int damageMax)
+				     double chanceToHit, int damageMin, int damageMax, Abilities basicAttack)
 	{
 
 		this.name = name;
@@ -60,6 +61,7 @@ public abstract class DungeonCharacter implements Comparable
 		this.chanceToHit = chanceToHit;
 		this.damageMin = damageMin;
 		this.damageMax = damageMax;
+		this.basicAttack = basicAttack;
 
 	}//end constructor
 
@@ -79,6 +81,21 @@ public abstract class DungeonCharacter implements Comparable
 	{
 		return attackSpeed;
 	}//end getAttackSpeed
+	
+	public int getDamageMin()
+	{
+		return this.damageMin;
+	}
+	
+	public int getDamageMax()
+	{
+		return this.damageMax;
+	}
+	
+	public double getChanceToHit()
+	{
+		return this.chanceToHit;
+	}
 
 
 /*-------------------------------------------------------
@@ -122,8 +139,8 @@ This method is called by: overridden versions in Hero and Monster
 			this.hitPoints -= hitPoints;
 			if (this.hitPoints < 0)
 				this.hitPoints = 0;
-			System.out.println(getName() + " hit " +
-								" for <" + hitPoints + "> points damage.");
+			System.out.println(getName() + " was hit" +
+								" for <" + hitPoints + "> points of damage.");
 			System.out.println(getName() + " now has " +
 								getHitPoints() + " hit points remaining.");
 			System.out.println();
@@ -163,28 +180,7 @@ hero classes and externally
 ---------------------------------------------------------*/
 	public void attack(DungeonCharacter opponent)
 	{
-		boolean canAttack;
-		int damage;
-
-		canAttack = Math.random() <= chanceToHit;
-
-		if (canAttack)
-		{
-			damage = (int)(Math.random() * (damageMax - damageMin + 1))
-						+ damageMin ;
-			opponent.subtractHitPoints(damage);
-
-
-
-			System.out.println();
-		}//end if can attack
-		else
-		{
-
-			System.out.println(getName() + "'s attack on " + opponent.getName() +
-								" failed!");
-			System.out.println();
-		}//end else
+		basicAttack.attack(this, opponent);
 
 	}//end attack method
 
