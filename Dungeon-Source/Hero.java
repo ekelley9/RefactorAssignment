@@ -30,19 +30,36 @@
 
 public abstract class Hero extends DungeonCharacter
 {
-	protected double chanceToBlock;
-	protected int numTurns;
+	private double chanceToBlock;
+	private int numTurns;
+	private Abilities specialMove;
 
 //-----------------------------------------------------------------
 //calls base constructor and gets name of hero from user
   public Hero(String name, int hitPoints, int attackSpeed,
 				     double chanceToHit, int damageMin, int damageMax,
-					 double chanceToBlock)
+					 double chanceToBlock, Abilities specialMove)
   {
-	super(name, hitPoints, attackSpeed, chanceToHit, damageMin, damageMax);
+	super(name, hitPoints, attackSpeed, chanceToHit, damageMin, damageMax, new BasicAttack());
 	this.chanceToBlock = chanceToBlock;
+	this.specialMove = specialMove;
   }
-
+  
+  public double getChanceToBlock()
+  {
+	  return this.chanceToBlock;
+  }
+  
+  public int getNumTurns()
+  {
+	  return this.numTurns;
+  }
+  
+  public void setNumTurns(int turns)
+  {
+	  this.numTurns = turns;
+  }
+  
 /*-------------------------------------------------------
 readName obtains a name for the hero from the user
 
@@ -71,8 +88,12 @@ This method is called by: subtractHitPoints()
   {
 		return Math.random() <= chanceToBlock;
 
-  }//end defend method
+  }
 
+  public void specialMove(DungeonCharacter opponent)
+  {
+	  specialMove.attack(this,opponent);
+  }
 /*-------------------------------------------------------
 subtractHitPoints checks to see if hero blocked attack, if so a message
 is displayed, otherwise base version of this method is invoked to
@@ -111,15 +132,6 @@ Returns: nothing
 This method calls: getAttackSpeed()
 This method is called by: external sources
 ---------------------------------------------------------*/
-	public void battleChoices(DungeonCharacter opponent)
-	{
-	    numTurns = getAttackSpeed()/opponent.getAttackSpeed();
-
-		if (numTurns == 0)
-			numTurns++;
-
-		System.out.println("Number of turns this round is: " + numTurns);
-
-	}//end battleChoices
+	
 
 }//end Hero class

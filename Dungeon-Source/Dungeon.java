@@ -145,7 +145,7 @@ user has the option of quitting.
 		while (theHero.isAlive() && theMonster.isAlive() && pause != 'q')
 		{
 		    //hero goes first
-			theHero.battleChoices(theMonster);
+			battleChoices(theHero, theMonster);
 
 			//monster's turn (provided it's still alive!)
 			if (theMonster.isAlive())
@@ -165,7 +165,64 @@ user has the option of quitting.
 			System.out.println("Quitters never win ;-)");
 
 	}//end battle method
+	
+	public static void battleChoices(Hero theHero, Monster theMonster)
+	{
+	    theHero.setNumTurns(theHero.getAttackSpeed()/theMonster.getAttackSpeed());
 
+		if (theHero.getNumTurns() == 0)
+			theHero.setNumTurns(theHero.getNumTurns()+ 1);
+
+		System.out.println("Number of turns this round is: " + theHero.getNumTurns());
+		int choice;
+
+
+		do
+		{
+			attackMenu(theHero);
+			
+		    choice = Keyboard.readInt();
+
+		    switch (choice)
+		    {
+			    case 1: theHero.attack(theMonster);
+			        break;
+			    case 2: theHero.specialMove(theMonster);
+			        break;
+			    default:
+			        System.out.println("invalid choice!");
+		    }
+
+			theHero.setNumTurns(theHero.getNumTurns()-1);
+			if (theHero.getNumTurns() > 0)
+			    System.out.println("Number of turns remaining is: " + theHero.getNumTurns());
+
+		} while(theHero.getNumTurns() > 0);
+
+	}
+	
+	public static void attackMenu(Hero theHero)
+	{
+		if(theHero instanceof Warrior)
+		{
+			System.out.println("1. Attack Opponent");
+		    System.out.println("2. Crushing Blow on Opponent");
+		    System.out.print("Choose an option: ");
+		}
+		else if(theHero instanceof Thief)
+		{
+			System.out.println("1. Attack Opponent");
+		    System.out.println("2. Perform a Sneak Attack");
+		    System.out.print("Choose an option: ");
+		}
+		else if(theHero instanceof Sorceress)
+		{
+			System.out.println("1. Attack Opponent");
+		    System.out.println("2. Self Heal");
+		    System.out.print("Choose an option: ");
+		}
+	}
+	
 	public static Hero characterCreator(int choice)
 	  {
 			if(choice == 1)

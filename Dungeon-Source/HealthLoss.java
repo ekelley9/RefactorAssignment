@@ -1,5 +1,5 @@
 
 public interface HealthLoss {
 
-	public void healthLoss();
+	public void healthLoss(DungeonCharacter Character);
 }
