@@ -8,11 +8,6 @@ public abstract class DungeonCharacter
 	private int damageMin, damageMax;
 	private Abilities basicAttack;
 
-	public int compareTo(Object o)
-	{
-		return 1;
-	}
-
 
 	public DungeonCharacter(String name, int hitPoints, int attackSpeed,
 				     double chanceToHit, int damageMin, int damageMax, Abilities basicAttack)
