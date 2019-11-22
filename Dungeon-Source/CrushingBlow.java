@@ -9,7 +9,7 @@ public class CrushingBlow implements Abilities {
 			System.out.println(character.getName() + " lands a CRUSHING BLOW for " + blowPoints
 								+ " damage!");
 			opponent.subtractHitPoints(blowPoints);
-		}//end blow succeeded
+		}
 		else
 		{
 			System.out.println(character.getName() + " failed to land a crushing blow");

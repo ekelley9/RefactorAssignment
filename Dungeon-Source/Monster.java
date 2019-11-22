@@ -1,21 +1,9 @@
-
-
-/**
- * Title:
- * Description:
- * Copyright:    Copyright (c) 2001
- * Company:
- * @author
- * @version 1.0
- */
-
-
 public abstract class Monster extends DungeonCharacter
 {
 	private double chanceToHeal;
 	private int minHeal, maxHeal;
 
-//-----------------------------------------------------------------
+
   public Monster(String name, int hitPoints, int attackSpeed,
 				     double chanceToHit, double chanceToHeal,
 					 int damageMin, int damageMax,
@@ -26,9 +14,9 @@ public abstract class Monster extends DungeonCharacter
 	this.maxHeal = maxHeal;
 	this.minHeal = minHeal;
 
-  }//end monster construcotr
-
-//-----------------------------------------------------------------
+  }
+  
+  
   public void heal()
   {
 	boolean canHeal;
@@ -43,18 +31,29 @@ public abstract class Monster extends DungeonCharacter
 		System.out.println(getName() + " healed itself for " + healPoints + " points.\n"
 							+ "Total hit points remaining are: " + getHitPoints());
 		System.out.println();
-	}//end can heal
+	}
 
 
-  }//end heal method
+  }
 
-//-----------------------------------------------------------------
+public double getChanceToHeal() {
+	return chanceToHeal;
+}
+
+public int getMinHeal() {
+	return minHeal;
+}
+
+public int getMaxHeal() {
+	return maxHeal;
+}
+
  public void subtractHitPoints(int hitPoints)
  {
 		super.subtractHitPoints(hitPoints);
 		heal();
 
- }//end method
+ }
 
 
-}//end Monster class
+}

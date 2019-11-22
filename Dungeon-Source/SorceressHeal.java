@@ -1,5 +1,5 @@
 
-public class SorceressfHeal implements Abilities {
+public class SorceressHeal implements Abilities {
 
 	@Override
 	public void attack(DungeonCharacter character, DungeonCharacter opponent) {
