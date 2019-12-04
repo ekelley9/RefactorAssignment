@@ -3,6 +3,8 @@ import java.util.Scanner;
 public class Dungeon
 {
 	private static Scanner kb = new Scanner(System.in);
+	private static HeroFactory heroCreator = new HeroFactory();
+	private static MonsterFactory monsterCreator = new MonsterFactory();
     public static void main(String[] args)
 	{
 
@@ -53,14 +55,14 @@ public class Dungeon
 
 		switch(choice)
 		{
-			case 1: return new Ogre();
+			case 1: return monsterCreator.monsterFactory("Ogre");
 
-			case 2: return new Gremlin();
+			case 2: return monsterCreator.monsterFactory("Gremlin");
 
-			case 3: return new Skeleton();
+			case 3: return monsterCreator.monsterFactory("Skeleton");
 
 			default: System.out.println("invalid choice, returning Skeleton");
-				     return new Skeleton();
+				     return monsterCreator.monsterFactory("Skeleton");
 		}
 	}
 
@@ -180,24 +182,25 @@ public class Dungeon
 	
 	public static Hero characterCreator(int choice)
 	  {	
-		System.out.print("Enter character name: ");
-	 	String name = kb.next();
 			if(choice == 1)
 			{
-				return new Warrior(name);
+				System.out.print("Enter character name: ");
+				return heroCreator.heroFactory("Warrior", kb.next());
 				
 			}
 			else if(choice == 2)
 			{
-				return new Sorceress(name);
+				System.out.print("Enter character name: ");
+				return heroCreator.heroFactory("Sorceress", kb.next());
 			}
 			else if(choice == 3)
 			{
-				return new Thief(name);
+				System.out.print("Enter character name: ");
+				return heroCreator.heroFactory("Thief", kb.next());
 			}
 			else
 			{
-				return new Thief("Roland");
+				return heroCreator.heroFactory("Thief", "Roland");
 			}
 			
 		
